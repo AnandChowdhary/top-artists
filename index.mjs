@@ -1,5 +1,6 @@
 import "dotenv/config";
 import fs from "fs/promises";
+import prettier from "prettier";
 import SpotifyWebApi from "spotify-web-api-node";
 
 const {
@@ -24,27 +25,54 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 async function generate() {
+  const dataDir = "data";
+  const today = new Date().toISOString().slice(0, 10);
   const data = await spotifyApi.refreshAccessToken();
   spotifyApi.setAccessToken(data.body["access_token"]);
-  console.log("The access token has been refreshed!");
 
   /** @type {import("./types").TopArtistsResult} */
   const topArtists = (await spotifyApi.getMyTopArtists("short_term")).body
     .items;
-  const top10 = topArtists.slice(0, 5);
+  const topFive = topArtists.slice(0, 5);
 
-  // Format as markdown table with image
+  // Find previous data file (the most recent one before today)
+  const files = await fs.readdir(dataDir);
+  const prevFile = files
+    .filter((f) => f.endsWith(".json") && f !== `${today}.json`)
+    .sort()
+    .pop();
+  let prevRanks = {};
+  if (prevFile) {
+    try {
+      const prevData = JSON.parse(
+        await fs.readFile(`${dataDir}/${prevFile}`, "utf-8")
+      );
+      prevData.forEach((artist) => {
+        prevRanks[artist.name] = artist.rank;
+      });
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // Format as markdown table with image and rank diff
   const table = [
-    "| #   | Image | Artist |",
-    "| --- | ----- | ------ |",
-    ...top10.map((artist, i) => {
+    "| #   | Image | Artist | Rank |",
+    "| --- | ----- | ------ | ---- |",
+    ...topFive.map((artist, i) => {
       let image = "";
       if (artist.images && artist.images.length > 0) {
         // Pick the smallest image (last in the array)
         const smallest = artist.images[artist.images.length - 1];
         image = `<img src=\"${smallest.url}\" width=\"64\" alt=\"${artist.name}\" />`;
       }
-      return `| ${i + 1}   | ${image} | ${artist.name} |`;
+      const prevRank = prevRanks[artist.name];
+      let rankDiff = "➖";
+      if (prevRank !== undefined) {
+        if (prevRank > i + 1) rankDiff = `🔺 ${prevRank - (i + 1)}`;
+        else if (prevRank < i + 1) rankDiff = `🔻 ${i + 1 - prevRank}`;
+      }
+      return `| ${i + 1}   | ${image} | ${artist.name} | ${rankDiff} |`;
     }),
   ].join("\n");
 
@@ -59,14 +87,24 @@ async function generate() {
   );
 
   // Write back to README.md
-  await fs.writeFile(readmePath, readme);
+  await fs.writeFile(
+    readmePath,
+    await prettier.format(readme, { parser: "markdown" })
+  );
 
   // Save top 5 artists as JSON in data/[date].json
-  const today = new Date().toISOString().slice(0, 10);
-  const dataDir = "data";
   const jsonPath = `${dataDir}/${today}.json`;
   await fs.mkdir(dataDir, { recursive: true });
-  await fs.writeFile(jsonPath, JSON.stringify(top10, null, 2));
+  const jsonData = topFive.map((artist, i) => ({
+    name: artist.name,
+    href: artist.href,
+    img:
+      artist.images && artist.images.length > 0
+        ? artist.images[artist.images.length - 1].url
+        : null,
+    rank: i + 1,
+  }));
+  await fs.writeFile(jsonPath, JSON.stringify(jsonData, null, 2) + "\n");
 }
 
 generate().then(console.log).catch(console.error);
