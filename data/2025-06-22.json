@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Gracie Abrams",
+    "href": "https://api.spotify.com/v1/artists/4tuJ0bMpJh08umKkEXKUI5",
+    "img": "https://i.scdn.co/image/ab6761610000f178f6d51e6f5342d2d363220920",
+    "rank": 1
+  },
+  {
+    "name": "Sabrina Carpenter",
+    "href": "https://api.spotify.com/v1/artists/74KM79TiuVKeVCqs8QtB0B",
+    "img": "https://i.scdn.co/image/ab6761610000f17878e45cfa4697ce3c437cb455",
+    "rank": 2
+  },
+  {
+    "name": "Taylor Swift",
+    "href": "https://api.spotify.com/v1/artists/06HL4z0CvFAxyc27GXpf02",
+    "img": "https://i.scdn.co/image/ab6761610000f178e672b5f553298dcdccb0e676",
+    "rank": 3
+  },
+  {
+    "name": "Maisie Peters",
+    "href": "https://api.spotify.com/v1/artists/2RVvqRBon9NgaGXKfywDSs",
+    "img": "https://i.scdn.co/image/ab6761610000f1788b521134ae0ba3f60aab6811",
+    "rank": 4
+  },
+  {
+    "name": "Olivia Rodrigo",
+    "href": "https://api.spotify.com/v1/artists/1McMsnEElThX1knmY4oliG",
+    "img": "https://i.scdn.co/image/ab6761610000f178e03a98785f3658f0b6461ec4",
+    "rank": 5
+  }
+]
