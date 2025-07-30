@@ -1,8 +1,8 @@
-name: Generate list weekly
+name: Generate list monthly
 
 on:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 1 * *"
   workflow_dispatch:
 
 permissions:
