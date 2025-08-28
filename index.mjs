@@ -105,6 +105,7 @@ async function generate() {
     rank: i + 1,
   }));
   await fs.writeFile(jsonPath, JSON.stringify(jsonData, null, 2) + "\n");
+  await fs.writeFile("api.json", JSON.stringify(jsonData, null, 2) + "\n");
 }
 
 generate().then(console.log).catch(console.error);
