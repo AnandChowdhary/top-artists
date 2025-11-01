@@ -7,10 +7,10 @@ This repository automatically generates a weekly list of my top 5 most listened 
 | #   | Image                                                                                                             | Artist            | Rank |
 | --- | ----------------------------------------------------------------------------------------------------------------- | ----------------- | ---- |
 | 1   | <img src="https://i.scdn.co/image/ab6761610000f178f6d51e6f5342d2d363220920" width="64" alt="Gracie Abrams" />     | Gracie Abrams     | ➖   |
-| 2   | <img src="https://i.scdn.co/image/ab6761610000f17878e45cfa4697ce3c437cb455" width="64" alt="Sabrina Carpenter" /> | Sabrina Carpenter | ➖   |
-| 3   | <img src="https://i.scdn.co/image/ab6761610000f17848aa5f4b5eb4e71bf34b3492" width="64" alt="Claire Rosinkranz" /> | Claire Rosinkranz | 🔺 2 |
-| 4   | <img src="https://i.scdn.co/image/ab6761610000f178e672b5f553298dcdccb0e676" width="64" alt="Taylor Swift" />      | Taylor Swift      | ➖   |
-| 5   | <img src="https://i.scdn.co/image/ab6761610000f178719f184586ebcba1900bb7f1" width="64" alt="Maisie Peters" />     | Maisie Peters     | 🔻 2 |
+| 2   | <img src="https://i.scdn.co/image/ab6761610000f178e2e8e7ff002a4afda1c7147e" width="64" alt="Taylor Swift" />      | Taylor Swift      | 🔺 2 |
+| 3   | <img src="https://i.scdn.co/image/ab6761610000f17878e45cfa4697ce3c437cb455" width="64" alt="Sabrina Carpenter" /> | Sabrina Carpenter | 🔻 1 |
+| 4   | <img src="https://i.scdn.co/image/ab6761610000f178df349c55b3dce4a9c2da505d" width="64" alt="Maisie Peters" />     | Maisie Peters     | 🔺 1 |
+| 5   | <img src="https://i.scdn.co/image/ab6761610000f178e03a98785f3658f0b6461ec4" width="64" alt="Olivia Rodrigo" />    | Olivia Rodrigo    | ➖   |
 
 <!--end-generated-->
 
